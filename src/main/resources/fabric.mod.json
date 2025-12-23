@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "multiproto",
+  "version": "${version}",
+  "name": "Multiproto",
+  "description": "Protocol translation mod allowing Minecraft Beta 1.7.3 clients to connect to earlier Beta server versions.",
+  "authors": [
+    "0n1",
+    "farnfarn02"
+  ],
+  "contact": {
+    "homepage": "https://github.com/zr0n1/Multiproto",
+    "sources": "https://github.com/zr0n1/Multiproto"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/multiproto/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "stationapi:event_bus_client": [
+      "com.github.zr0n1.multiproto.Multiproto",
+      "com.github.zr0n1.multiproto.parity.optional.TextureParityHelper"
+    ],
+    "gcapi3": [
+      "com.github.zr0n1.multiproto.Config"
+    ],
+    "gcapi3:presave": [
+      "com.github.zr0n1.multiproto.Config"
+    ]
+  },
+  "mixins": [
+    "multiproto.mixins.json"
+  ],
+  "recommends": {
+    "modmenu": "*"
+  },
+  "suggests": {
+    "mojangfixstationapi": "*"
+  },
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3",
+    "station-api-base": "*",
+    "gcapi3": "*"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "pl/telvarost/mojangfixstationapi/client/gui/multiplayer/ServerData": [
+        "com/github/zr0n1/interfaces/MultiprotoServerData"
+      ]
+    }
+  }
+}

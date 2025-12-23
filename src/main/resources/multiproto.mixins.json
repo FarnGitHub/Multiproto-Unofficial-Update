@@ -1,0 +1,50 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.zr0n1.multiproto.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "com.github.zr0n1.multiproto.mixin.MultiprotoMixinPlugin",
+  "mixins": [
+    "network.packet.PacketMixin",
+    "network.packet.c2s.play.ClickSlotC2SPacketMixin",
+    "network.packet.c2s.play.PlayerInteractBlockC2SPacketMixin",
+    "network.packet.login.LoginHelloPacketMixin",
+    "network.packet.play.PlayerRespawnPacketMixin",
+    "network.packet.s2c.play.EntityEquipmentUpdateS2CPacketMixin",
+    "network.packet.s2c.play.EntitySpawnS2CPacketMixin",
+    "network.packet.s2c.play.ItemEntitySpawnS2CPacketMixin",
+    "network.packet.s2c.play.LivingEntitySpawnS2CPacketMixin",
+    "network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacketMixin",
+    "parity.block.BlockAccessor",
+    "parity.block.CobwebBlockBehaviorMixin",
+    "parity.block.LeavesBlockParityMixin",
+    "parity.block.SaplingBlockTextureMixin",
+    "parity.entity.EntityAccessor",
+    "parity.item.ToolItemAccessor",
+    "parity.optional.block.FurnaceBlockTextureMixin",
+    "parity.optional.block.RedstoneWireBlockTextureMixin",
+    "parity.optional.block.SlabBlockTextureMixin"
+  ],
+  "client": [
+    "gui.MultiplayerScreenMixin",
+    "mojangfixstationapi.gui.DirectConnectScreenAccessor",
+    "mojangfixstationapi.gui.DirectConnectScreenMixin",
+    "mojangfixstationapi.gui.EditServerScreenAccessor",
+    "mojangfixstationapi.gui.EditServerScreenMixin",
+    "mojangfixstationapi.gui.MultiplayerScreenMixin",
+    "mojangfixstationapi.gui.MultiplayerServerListWidgetMixin",
+    "mojangfixstationapi.gui.ServerDataMixin",
+    "network.player.MultiplayerClientPlayerEntitySneakingMixin",
+    "network.player.MultiplayerInteractionManagerMixin",
+    "parity.misc.MinecraftMixin",
+    "parity.network.ClientNetworkHandlerEntityAnimationMixin",
+    "parity.optional.gui.InGameHudVersionTextMixin",
+    "parity.render.block.RedstoneDustTintRendererMixin",
+    "parity.render.entity.LivingEntityNameRendererMixin",
+    "parity.render.entity.PlayerEntityNameRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+
+}
