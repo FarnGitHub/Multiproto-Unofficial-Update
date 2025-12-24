@@ -12,6 +12,8 @@ public class ProtocolVersion implements Comparable<ProtocolVersion> {
     public static final SortedSet<ProtocolVersion> ALPHA_PROTOCOL_VERSIONS = new TreeSet<>();
     public static final SortedSet<ProtocolVersion> BETA_PROTOCOL_VERSIONS = new TreeSet<>();
 
+
+    public static final ProtocolVersion AP_CLIENT = new ProtocolVersion(2000, Type.BETA, "alpha", "place");
     /**
      * Beta 1.7 - Beta 1.7.3
      */
@@ -150,15 +152,24 @@ public class ProtocolVersion implements Comparable<ProtocolVersion> {
     }
 
     public String nameRange(boolean abbreviate) {
+        if(version == 2000) {
+            return "Alphaplace Client";
+        }
         return (firstClient.equals(lastClient) ? name(firstClient, abbreviate) :
                 String.join((abbreviate ? "-" : " - "), name(firstClient, abbreviate), name(lastClient, abbreviate)));
     }
 
     public String name(boolean abbreviate) {
+        if(version == 2000) {
+            return "Alphaplace Client";
+        }
         return name(lastClient, abbreviate);
     }
 
     private String name(String s, boolean abbreviate) {
+        if(version == 2000) {
+            return "Alphaplace Client";
+        }
         return (abbreviate ? type.shortLabel : type.label) + (abbreviate ? "" : " ") + (type.alpha && !abbreviate ? "v" : "") + s;
     }
 

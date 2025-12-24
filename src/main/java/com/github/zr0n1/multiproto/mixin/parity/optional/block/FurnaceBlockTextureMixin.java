@@ -17,15 +17,19 @@ public abstract class FurnaceBlockTextureMixin {
 
     @Inject(method = "getTexture", at = @At("HEAD"), cancellable = true)
     private void applyTextureParity(int side, CallbackInfoReturnable<Integer> cir) {
-        if ((side == 1 || side == 0) && ProtocolVersionManager.isBefore(ProtocolVersion.BETA_8) && Config.config.textureParity) {
+        if ((side == 1 || side == 0) && isBeforeWithAlphaPlace(ProtocolVersion.BETA_8) && Config.config.textureParity) {
             cir.setReturnValue(Block.STONE.textureId);
         }
     }
 
     @Inject(method = "getTextureId", at = @At("HEAD"), cancellable = true)
     private void applyTextureParity(BlockView bv, int x, int y, int z, int side, CallbackInfoReturnable<Integer> cir) {
-        if ((side == 1 || side == 0) && ProtocolVersionManager.isBefore(ProtocolVersion.BETA_8) && Config.config.textureParity) {
+        if ((side == 1 || side == 0) && isBeforeWithAlphaPlace(ProtocolVersion.BETA_8) && Config.config.textureParity) {
             cir.setReturnValue(Block.STONE.textureId);
         }
+    }
+
+    private static boolean isBeforeWithAlphaPlace(ProtocolVersion target) {
+        return ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(target);
     }
 }

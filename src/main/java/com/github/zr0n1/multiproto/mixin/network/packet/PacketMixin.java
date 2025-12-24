@@ -1,9 +1,12 @@
 package com.github.zr0n1.multiproto.mixin.network.packet;
 
+import com.github.zr0n1.multiproto.ap_client_v2.Packet62Sound;
+import com.github.zr0n1.multiproto.ap_client_v2.Packet63Digging;
 import com.github.zr0n1.multiproto.protocol.ProtocolVersion;
 import com.github.zr0n1.multiproto.protocol.ProtocolVersionManager;
 import net.minecraft.network.packet.Packet;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -14,7 +17,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 @Mixin(Packet.class)
-public class PacketMixin {
+public abstract class PacketMixin {
+
+    @Shadow static void register(int rawId, boolean clientBound, boolean serverBound, Class type) {
+        throw new AssertionError();
+    }
 
     @Inject(method = "readString", at = @At("HEAD"), cancellable = true)
     private static void readUTFIfOldVersion(DataInputStream stream, int maxLength, CallbackInfoReturnable<String> cir)
@@ -34,5 +41,11 @@ public class PacketMixin {
             stream.writeUTF(string);
             ci.cancel();
         }
+    }
+
+    @Inject(method="<clinit>", at = @At("TAIL"))
+    private static void addAlphaplaceClientPacker(CallbackInfo ci) {
+        register(62, true, false, Packet62Sound.class);
+        register(63, true, false, Packet63Digging.class);
     }
 }
