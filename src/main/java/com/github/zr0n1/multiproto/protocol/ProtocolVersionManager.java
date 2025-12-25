@@ -34,6 +34,10 @@ public final class ProtocolVersionManager {
         return version.version == 2000;
     }
 
+    public static boolean isBeforeWithAlphaPlace(ProtocolVersion target) {
+        return isAlphaPlace() || isBefore(target);
+    }
+
     public static boolean isBefore(ProtocolVersion target) {
         return version.isBefore(target);
     }

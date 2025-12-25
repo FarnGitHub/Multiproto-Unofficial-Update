@@ -17,10 +17,10 @@ public class TranslationParityHelper {
     }
 
     public static void replaceBefore(ProtocolVersion target, Block block, String key) {
-        block.setTranslationKey(((ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(target)) && Config.config.translationParity ? "multiproto." : "") + key);
+        block.setTranslationKey((ProtocolVersionManager.isBeforeWithAlphaPlace(target) && Config.config.translationParity ? "multiproto." : "") + key);
     }
 
     public static void replaceBefore(ProtocolVersion target, Item item, String key) {
-        item.setTranslationKey(((ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(target)) && Config.config.translationParity ? "multiproto." : "") + key);
+        item.setTranslationKey((ProtocolVersionManager.isBeforeWithAlphaPlace(target) && Config.config.translationParity ? "multiproto." : "") + key);
     }
 }

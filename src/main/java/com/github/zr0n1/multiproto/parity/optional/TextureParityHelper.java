@@ -30,7 +30,7 @@ public class TextureParityHelper {
 
     public static void applyParity() {
         ExpandableAtlas terrain = Atlases.getTerrain();
-        if ((ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(ProtocolVersion.BETA_14)) && Config.config.textureParity) {
+        if (ProtocolVersionManager.isBeforeWithAlphaPlace(ProtocolVersion.BETA_14) && Config.config.textureParity) {
             Block.BRICKS.textureId = terrain.addTexture(Multiproto.NAMESPACE.id("block/bricks")).index;
             Block.COBBLESTONE.textureId = terrain.addTexture(Multiproto.NAMESPACE.id("block/cobblestone")).index;
             slabSideTextures[0] = terrain.addTexture(Multiproto.NAMESPACE.id("block/smooth_stone_slab_side")).index;
@@ -41,7 +41,7 @@ public class TextureParityHelper {
             Block.BRICKS.textureId = 7;
             Block.COBBLESTONE.textureId = 16;
         }
-        if ((ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(ProtocolVersion.BETA_9)) && Config.config.textureParity) {
+        if (ProtocolVersionManager.isBeforeWithAlphaPlace(ProtocolVersion.BETA_9) && Config.config.textureParity) {
             Block.REDSTONE_WIRE.textureId = redstoneWireTextures[0] = terrain.addTexture(Multiproto.NAMESPACE.id("block/redstone_dust_cross")).index;
             terrain.addTexture(Multiproto.NAMESPACE.id("block/redstone_dust_line"));
             redstoneWireTextures[1] = terrain.addTexture(Multiproto.NAMESPACE.id("block/redstone_dust_cross_on")).index;

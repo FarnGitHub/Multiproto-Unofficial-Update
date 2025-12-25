@@ -60,7 +60,7 @@ public class RecipeParityHelper {
         for (int i = 0; i < 16; i++) {
             removeBefore(ProtocolVersion.BETA_8, new ItemStack(Block.WOOL, 1, ~i & 15), new ItemStack(Item.DYE, 1, i));
         }
-        if (isBeforeWithAlphaPlace(ProtocolVersion.BETA_8)) {
+        if (ProtocolVersionManager.isBeforeWithAlphaPlace(ProtocolVersion.BETA_8)) {
             SmeltingRecipeManager.getInstance().getRecipes().remove(Block.CACTUS.id);
             SmeltingRecipeManager.getInstance().getRecipes().remove(Block.LOG.id);
         }
@@ -77,14 +77,10 @@ public class RecipeParityHelper {
     }
 
     public static void removeBefore(ProtocolVersion target, ItemStack... outputs) {
-        if (isBeforeWithAlphaPlace(target)) {
+        if (ProtocolVersionManager.isBeforeWithAlphaPlace(target)) {
             for (ItemStack output : outputs) {
                 CraftingRecipeManager.getInstance().getRecipes().removeIf(r -> ((CraftingRecipe) r).getOutput().equals(output));
             }
         }
-    }
-
-    private static boolean isBeforeWithAlphaPlace(ProtocolVersion target) {
-        return ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(target);
     }
 }

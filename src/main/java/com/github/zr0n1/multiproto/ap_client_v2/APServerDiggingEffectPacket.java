@@ -6,7 +6,7 @@ import net.minecraft.network.packet.Packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
-public class Packet63Digging extends Packet {
+public class APServerDiggingEffectPacket extends Packet {
 	public int x;
 	public int y;
 	public int z;

@@ -9,7 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class Packet62Sound extends Packet {
+public class APServerSoundPacket extends Packet {
 	public String sound;
 	public double locX;
 	public double locY;

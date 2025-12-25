@@ -42,16 +42,12 @@ public abstract class MultiplayerClientPlayerEntitySneakingMixin extends ClientP
     }
 
     public boolean isOnLadder() {
-        if (isBeforeWithAlphaPlace(ProtocolVersion.BETA_11)) {
+        if (ProtocolVersionManager.isBeforeWithAlphaPlace(ProtocolVersion.BETA_11)) {
             int x = MathHelper.floor(this.x);
             int y = MathHelper.floor(this.boundingBox.minY);
             int z = MathHelper.floor(this.z);
             return super.isOnLadder() || this.world.getBlockId(x, y + 1, z) == Block.LADDER.id;
         }
         return super.isOnLadder();
-    }
-
-    private static boolean isBeforeWithAlphaPlace(ProtocolVersion target) {
-        return ProtocolVersionManager.isAlphaPlace() || ProtocolVersionManager.isBefore(target);
     }
 }

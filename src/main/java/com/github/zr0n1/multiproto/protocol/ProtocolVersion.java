@@ -12,8 +12,10 @@ public class ProtocolVersion implements Comparable<ProtocolVersion> {
     public static final SortedSet<ProtocolVersion> ALPHA_PROTOCOL_VERSIONS = new TreeSet<>();
     public static final SortedSet<ProtocolVersion> BETA_PROTOCOL_VERSIONS = new TreeSet<>();
 
-
-    public static final ProtocolVersion AP_CLIENT = new ProtocolVersion(2000, Type.BETA, "alpha", "place");
+    /**
+     * Modified Alpha 1.2.6 for AlphaPlace Server, has similar network code to beta 1.7.3
+     */
+    public static final ProtocolVersion UB_2000 = new ProtocolVersion(2000, Type.UB_ALPHA, "1.2.6");
     /**
      * Beta 1.7 - Beta 1.7.3
      */
@@ -152,24 +154,15 @@ public class ProtocolVersion implements Comparable<ProtocolVersion> {
     }
 
     public String nameRange(boolean abbreviate) {
-        if(version == 2000) {
-            return "Alphaplace Client";
-        }
         return (firstClient.equals(lastClient) ? name(firstClient, abbreviate) :
                 String.join((abbreviate ? "-" : " - "), name(firstClient, abbreviate), name(lastClient, abbreviate)));
     }
 
     public String name(boolean abbreviate) {
-        if(version == 2000) {
-            return "Alphaplace Client";
-        }
         return name(lastClient, abbreviate);
     }
 
     private String name(String s, boolean abbreviate) {
-        if(version == 2000) {
-            return "Alphaplace Client";
-        }
         return (abbreviate ? type.shortLabel : type.label) + (abbreviate ? "" : " ") + (type.alpha && !abbreviate ? "v" : "") + s;
     }
 
@@ -218,7 +211,11 @@ public class ProtocolVersion implements Comparable<ProtocolVersion> {
         /**
          * Beta 1.2 - Beta 1.7.3.
          */
-        BETA("Beta", "b", false);
+        BETA("Beta", "b", false),
+        /**
+         * Modified Alpha 1.2.6 for AlphaPlace Server, has similar network code to Beta 1.7.3.
+         */
+        UB_ALPHA("UberBukkit-Client Alpha", "ub_a", false);
 
         public final String label;
         public final String shortLabel;

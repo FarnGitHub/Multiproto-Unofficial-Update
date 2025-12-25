@@ -1,7 +1,7 @@
 package com.github.zr0n1.multiproto.mixin.network.packet;
 
-import com.github.zr0n1.multiproto.ap_client_v2.Packet62Sound;
-import com.github.zr0n1.multiproto.ap_client_v2.Packet63Digging;
+import com.github.zr0n1.multiproto.ap_client_v2.APServerSoundPacket;
+import com.github.zr0n1.multiproto.ap_client_v2.APServerDiggingEffectPacket;
 import com.github.zr0n1.multiproto.protocol.ProtocolVersion;
 import com.github.zr0n1.multiproto.protocol.ProtocolVersionManager;
 import net.minecraft.network.packet.Packet;
@@ -45,7 +45,7 @@ public abstract class PacketMixin {
 
     @Inject(method="<clinit>", at = @At("TAIL"))
     private static void addAlphaplaceClientPacker(CallbackInfo ci) {
-        register(62, true, false, Packet62Sound.class);
-        register(63, true, false, Packet63Digging.class);
+        register(62, true, false, APServerSoundPacket.class);
+        register(63, true, false, APServerDiggingEffectPacket.class);
     }
 }
